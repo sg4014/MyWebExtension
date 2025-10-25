@@ -3,9 +3,8 @@ import { ILayout } from "@docsvision/webclient/System/$Layout";
 import { ApplicationBusinessTripLogic } from "../Logic/ApplicationBusinessTripLogic";
 import { ILayoutBeforeSavingEventArgs } from "@docsvision/webclient/System/ILayoutParams";
 import { DateTimePicker } from "@docsvision/webclient/Platform/DateTimePicker";
-import { IDataChangedEventArgsEx } from "@docsvision/webclient/System/IDataChangedEventArgs";
-import { GenModels } from "@docsvision/webclient/Generated/DocsVision.WebClient.Models";
 import { IDataChangedEventArgs } from "@docsvision/webclient/System/IDataChangedEventArgs";
+import { CustomButton } from "@docsvision/webclient/Platform/CustomButton";
 
 /**
  * Событие во время сохранения карточки
@@ -34,4 +33,10 @@ export async function ddApplicationBusinessTrip_tripDateChange(
     if (!sender) { return; }
     const logic = new ApplicationBusinessTripLogic();
     await logic.validateThatTripEndsAfterTripStarts(sender, args);
+}
+
+export async function ddApplicationBusinessTrip_buttonInfo_click(sender: CustomButton) {
+    if (!sender) { return; }
+    const logic = new ApplicationBusinessTripLogic();
+    await logic.displayCardInfo(sender);
 }

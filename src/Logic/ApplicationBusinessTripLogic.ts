@@ -2,8 +2,9 @@ import { TextBox } from "@docsvision/webclient/Platform/TextBox";
 import { MessageBox } from "@docsvision/webclient/Helpers/MessageBox/MessageBox";
 import { DateTimePicker } from "@docsvision/webclient/Platform/DateTimePicker";
 import { ILayout } from "@docsvision/webclient/System/$Layout";
-import { Block } from "@docsvision/webclient/Platform/Block";
 import { IDataChangedEventArgs } from "@docsvision/webclient/System/IDataChangedEventArgs";
+import { CustomButton } from "@docsvision/webclient/Platform/CustomButton";
+import { TextArea } from "@docsvision/webclient/Platform/TextArea";
 
 
 export class ApplicationBusinessTripLogic {
@@ -42,5 +43,26 @@ export class ApplicationBusinessTripLogic {
             await MessageBox.ShowWarning("Дата начала командировки не может быть позже даты конца командировки!");
             sender.params.value = args.oldValue;
         }
+    }
+
+    public async displayCardInfo(sender: CustomButton) {
+        // get layout from sender
+        const controls = sender.layout.controls;
+
+        // get data from layout
+        const nameControl = controls.tryGet<TextBox>("name");
+        const creationDateControl = controls.tryGet<DateTimePicker>("creationDate");
+        const tripDateStartControl = controls.tryGet<DateTimePicker>("tripDateStart");
+        const tripDateEndControl = controls.tryGet<DateTimePicker>("tripDateEnd");
+        const tripReasonControl = controls.tryGet<TextArea>("tripReason");
+
+        // display data
+        await MessageBox.ShowInfo(`
+Название: ${nameControl?.params?.value ?? ''},
+Дата создания: ${creationDateControl?.params?.value ?? ''},
+Дата начала командировки: ${tripDateStartControl?.params?.value ?? ''},
+Дата конца командировки: ${tripDateEndControl?.params?.value ?? ''},
+Основание для поездки: ${tripReasonControl?.params?.value ?? ''}
+        `);
     }
 }
