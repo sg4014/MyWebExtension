@@ -6,11 +6,6 @@ import { DateTimePicker } from "@docsvision/webclient/Platform/DateTimePicker";
 import { IDataChangedEventArgs } from "@docsvision/webclient/System/IDataChangedEventArgs";
 import { CustomButton } from "@docsvision/webclient/Platform/CustomButton";
 
-/**
- * Событие во время сохранения карточки
- * @param layout разметка
- * @param args аргументы события
- */
 export async function ddApplicationBusinessTrip_beforeCardSaving(
     layout: ILayout,
     args: ICancelableEventArgs<ILayoutBeforeSavingEventArgs>

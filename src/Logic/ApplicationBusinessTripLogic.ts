@@ -46,17 +46,14 @@ export class ApplicationBusinessTripLogic {
     }
 
     public async displayCardInfo(sender: CustomButton) {
-        // get layout from sender
         const controls = sender.layout.controls;
 
-        // get data from layout
         const nameControl = controls.tryGet<TextBox>("name");
         const creationDateControl = controls.tryGet<DateTimePicker>("creationDate");
         const tripDateStartControl = controls.tryGet<DateTimePicker>("tripDateStart");
         const tripDateEndControl = controls.tryGet<DateTimePicker>("tripDateEnd");
         const tripReasonControl = controls.tryGet<TextArea>("tripReason");
 
-        // display data
         await MessageBox.ShowInfo(`
 Название: ${nameControl?.params?.value ?? ''},
 Дата создания: ${creationDateControl?.params?.value ?? ''},
