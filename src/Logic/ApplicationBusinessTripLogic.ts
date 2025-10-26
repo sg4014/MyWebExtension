@@ -5,6 +5,7 @@ import { ILayout } from "@docsvision/webclient/System/$Layout";
 import { IDataChangedEventArgs } from "@docsvision/webclient/System/IDataChangedEventArgs";
 import { CustomButton } from "@docsvision/webclient/Platform/CustomButton";
 import { TextArea } from "@docsvision/webclient/Platform/TextArea";
+import { DirectoryDesignerRow } from "@docsvision/webclient/BackOffice/DirectoryDesignerRow";
 
 
 export class ApplicationBusinessTripLogic {
@@ -53,13 +54,15 @@ export class ApplicationBusinessTripLogic {
         const tripDateStartControl = controls.tryGet<DateTimePicker>("tripDateStart");
         const tripDateEndControl = controls.tryGet<DateTimePicker>("tripDateEnd");
         const tripReasonControl = controls.tryGet<TextArea>("tripReason");
+        const cityControl = controls.tryGet<DirectoryDesignerRow>("city");
 
         await MessageBox.ShowInfo(`
 Название: ${nameControl?.params?.value ?? ''},
 Дата создания: ${creationDateControl?.params?.value ?? ''},
 Дата начала командировки: ${tripDateStartControl?.params?.value ?? ''},
 Дата конца командировки: ${tripDateEndControl?.params?.value ?? ''},
-Основание для поездки: ${tripReasonControl?.params?.value ?? ''}
+Основание для поездки: ${tripReasonControl?.params?.value ?? ''},
+Город: ${cityControl?.params?.value?.name ?? ''}
         `);
     }
 }
