@@ -1,0 +1,13 @@
+/home/sergey/EngineerSchool/MyExtension/ServerExtension/obj/Debug/net8.0/MyDVExtension.Server.csproj.AssemblyReference.cache
+/home/sergey/EngineerSchool/MyExtension/ServerExtension/obj/Debug/net8.0/MyDVExtension.Server.GeneratedMSBuildEditorConfig.editorconfig
+/home/sergey/EngineerSchool/MyExtension/ServerExtension/obj/Debug/net8.0/MyDVExtension.Server.AssemblyInfoInputs.cache
+/home/sergey/EngineerSchool/MyExtension/ServerExtension/obj/Debug/net8.0/MyDVExtension.Server.AssemblyInfo.cs
+/home/sergey/EngineerSchool/MyExtension/ServerExtension/obj/Debug/net8.0/MyDVExtension.Server.csproj.CoreCompileInputs.cache
+/home/sergey/EngineerSchool/MyExtension/ServerExtension/obj/Debug/net8.0/MyDVExtension.Server.sourcelink.json
+/home/sergey/EngineerSchool/MyExtension/ServerExtension/bin/Debug/net8.0/MyDVExtension.Server.deps.json
+/home/sergey/EngineerSchool/MyExtension/ServerExtension/bin/Debug/net8.0/MyDVExtension.Server.dll
+/home/sergey/EngineerSchool/MyExtension/ServerExtension/bin/Debug/net8.0/MyDVExtension.Server.pdb
+/home/sergey/EngineerSchool/MyExtension/ServerExtension/obj/Debug/net8.0/MyDVExtension.Server.dll
+/home/sergey/EngineerSchool/MyExtension/ServerExtension/obj/Debug/net8.0/refint/MyDVExtension.Server.dll
+/home/sergey/EngineerSchool/MyExtension/ServerExtension/obj/Debug/net8.0/MyDVExtension.Server.pdb
+/home/sergey/EngineerSchool/MyExtension/ServerExtension/obj/Debug/net8.0/ref/MyDVExtension.Server.dll

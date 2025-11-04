@@ -6,6 +6,10 @@ import { IDataChangedEventArgs } from "@docsvision/webclient/System/IDataChanged
 import { CustomButton } from "@docsvision/webclient/Platform/CustomButton";
 import { TextArea } from "@docsvision/webclient/Platform/TextArea";
 import { DirectoryDesignerRow } from "@docsvision/webclient/BackOffice/DirectoryDesignerRow";
+import {StaffDirectoryItems} from "@docsvision/webclient/BackOffice/StaffDirectoryItems";
+import {Layout} from "@docsvision/webclient/System/Layout";
+import {$BusinessTripAppService} from "../Services/Interfaces/IBusinessTripAppService";
+import {$MessageBox} from "@docsvision/webclient/System/$MessageBox";
 
 
 export class ApplicationBusinessTripLogic {
@@ -63,6 +67,16 @@ export class ApplicationBusinessTripLogic {
 Дата конца командировки: ${tripDateEndControl?.params?.value ?? ''},
 Основание для поездки: ${tripReasonControl?.params?.value ?? ''},
 Город: ${cityControl?.params?.value?.name ?? ''}
+        `);
+    }
+
+    public async FillExecutiveAndPhone(layout: Layout) {
+        const tripSvc = layout.getService($BusinessTripAppService);
+        const model = await tripSvc.GetBusinessTripAppTraveller({documentId: layout.cardInfo.id});
+        await MessageBox.ShowInfo(`
+traveller id: ${model.id}
+executive id: ${model.executiveId}
+phone: ${model.phone}
         `);
     }
 }

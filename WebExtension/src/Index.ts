@@ -1,5 +1,9 @@
 ﻿import * as ApplicationBusinessTripHandlers from "./EventHandlers/ApplicationBusinessTripHandlers";
 import { extensionManager } from "@docsvision/webclient/System/ExtensionManager";
+import {Service} from "@docsvision/webclient/System/Service";
+import { $BusinessTripAppService } from "./Services/Interfaces/IBusinessTripAppService";
+import {$RequestManager} from "@docsvision/webclient/System/$RequestManager";
+import {BusinessTripAppService} from "./Services/BusinessTripAppService";
 
 
 // Главная входная точка всего расширения
@@ -12,6 +16,8 @@ extensionManager.registerExtension({
     name: "MyWebExtension",
     version: "1.0",
     globalEventHandlers: [ ApplicationBusinessTripHandlers ],
-    layoutServices: [],
+    layoutServices: [
+        Service.fromFactory($BusinessTripAppService, (services: $RequestManager) => new BusinessTripAppService(services))
+    ],
     controls: []
 })

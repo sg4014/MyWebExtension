@@ -1,0 +1,9 @@
+using System;
+using DocsVision.Platform.WebClient;
+using MyDVExtension.Server.Model;
+
+namespace MyDVExtension.Server.Services;
+
+public interface IBusinessTripAppService {
+	BusinessTripAppTravellerModel GetBusinessTripAppTravellerModel(SessionContext sessionContext, Guid cardId);
+}
