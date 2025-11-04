@@ -1,0 +1,80 @@
+{
+  "format": 1,
+  "restore": {
+    "/home/sergey/EngineerSchool/MyExtension/ServerExtension/MyDVExtension.Server.csproj": {}
+  },
+  "projects": {
+    "/home/sergey/EngineerSchool/MyExtension/ServerExtension/MyDVExtension.Server.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/sergey/EngineerSchool/MyExtension/ServerExtension/MyDVExtension.Server.csproj",
+        "projectName": "MyDVExtension.Server",
+        "projectPath": "/home/sergey/EngineerSchool/MyExtension/ServerExtension/MyDVExtension.Server.csproj",
+        "packagesPath": "/home/sergey/.nuget/packages/",
+        "outputPath": "/home/sergey/EngineerSchool/MyExtension/ServerExtension/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/sergey/EngineerSchool/NuGet.config",
+          "/home/sergey/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {},
+          "https://packages.docsvision.com/nuget/docsvision/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "DocsVision.WebClient.Extensibility": {
+              "target": "Package",
+              "version": "[6.1.716, )"
+            },
+            "Microsoft.XmlSerializer.Generator": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Scrutor": {
+              "target": "Package",
+              "version": "[6.1.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.121/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
