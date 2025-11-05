@@ -5,5 +5,11 @@ using MyDVExtension.Server.Model;
 namespace MyDVExtension.Server.Services;
 
 public interface IBusinessTripAppService {
-	BusinessTripAppTravellerModel GetBusinessTripAppTravellerModel(SessionContext sessionContext, Guid cardId);
+	BusinessTripAppTravellerModel GetBusinessTripAppTravellerModel(
+        SessionContext sessionContext, Guid travellerId);
+
+    BusinessTripAppTotalAllowanceModel GetBusinessTripAppTotalAllowanceModel(
+        SessionContext sessionContext, string city, int daysInTrip);
+
+    void InitCard(SessionContext sessionContext, Guid cardId);
 }

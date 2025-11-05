@@ -1,0 +1,20 @@
+import * as ApplicationBusinessTripHandlers from "./EventHandlers/ApplicationBusinessTripHandlers";
+import { extensionManager } from "@docsvision/webclient/System/ExtensionManager";
+import { Service } from "@docsvision/webclient/System/Service";
+import { $BusinessTripAppService } from "./Services/Interfaces/IBusinessTripAppService";
+import { BusinessTripAppService } from "./Services/BusinessTripAppService";
+// Главная входная точка всего расширения
+// Данный файл должен импортировать прямо или косвенно все остальные файлы, 
+// чтобы rollup смог собрать их все в один бандл.
+// Регистрация расширения позволяет корректно установить все
+// обработчики событий, сервисы и прочие сущности web-приложения.
+extensionManager.registerExtension({
+    name: "MyWebExtension",
+    version: "1.0",
+    globalEventHandlers: [ApplicationBusinessTripHandlers],
+    layoutServices: [
+        Service.fromFactory($BusinessTripAppService, function (services) { return new BusinessTripAppService(services); })
+    ],
+    controls: []
+});
+//# sourceMappingURL=Index.js.map

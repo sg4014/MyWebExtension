@@ -6,6 +6,8 @@ import { DateTimePicker } from "@docsvision/webclient/Platform/DateTimePicker";
 import { IDataChangedEventArgs } from "@docsvision/webclient/System/IDataChangedEventArgs";
 import { CustomButton } from "@docsvision/webclient/Platform/CustomButton";
 import {StaffDirectoryItems} from "@docsvision/webclient/BackOffice/StaffDirectoryItems";
+import { DirectoryDesignerRow } from "@docsvision/webclient/BackOffice/DirectoryDesignerRow";
+import { NumberControl } from "@docsvision/webclient/Platform/Number";
 
 export async function ddApplicationBusinessTrip_beforeCardSaving(
     layout: ILayout,
@@ -29,6 +31,7 @@ export async function ddApplicationBusinessTrip_tripDateChange(
     if (!sender) { return; }
     const logic = new ApplicationBusinessTripLogic();
     await logic.validateThatTripEndsAfterTripStarts(sender, args);
+    await logic.updateDaysInTripOnDatesChanged(sender.layout);
 }
 
 export async function ddApplicationBusinessTrip_buttonInfo_click(sender: CustomButton) {
@@ -37,7 +40,28 @@ export async function ddApplicationBusinessTrip_buttonInfo_click(sender: CustomB
     await logic.displayCardInfo(sender);
 }
 
-export async function ddApplicationBusinessTrip_StaffDirectoryItems_onDataChanged(sender: StaffDirectoryItems) {
+export async function ddApplicationBusinessTrip_traveller_onDataChanged(
+    sender: StaffDirectoryItems,
+    args: IDataChangedEventArgs
+) {
+    if (!sender) { return; }
+    await new ApplicationBusinessTripLogic().fillExecutiveAndPhone(sender.layout, args);
+}
+
+export async function ddApplicationBusinessTrip_city_onDataChanged(
+    sender: DirectoryDesignerRow,
+    args: IDataChangedEventArgs
+) {
+    if (!sender) { return; }
+    await new ApplicationBusinessTripLogic().fillAllowance(sender.layout, args);
+}
+
+export async function ddApplicationBusinessTrip_daysInTripCount_onDataChanged(
+    sender: NumberControl,
+    args: IDataChangedEventArgs
+) {
+    if (!sender) { return; }
     const logic = new ApplicationBusinessTripLogic();
-    await logic.FillExecutiveAndPhone(sender.layout);
+    await logic.fillAllowanceOnDaysChanged(sender.layout, args);
+    await logic.updateTripEndDateOnDaysChanged(sender.layout, args);
 }

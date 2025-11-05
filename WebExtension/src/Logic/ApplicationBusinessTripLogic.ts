@@ -10,6 +10,8 @@ import {StaffDirectoryItems} from "@docsvision/webclient/BackOffice/StaffDirecto
 import {Layout} from "@docsvision/webclient/System/Layout";
 import {$BusinessTripAppService} from "../Services/Interfaces/IBusinessTripAppService";
 import {$MessageBox} from "@docsvision/webclient/System/$MessageBox";
+import { $EmployeeController } from "@docsvision/webclient/Generated/DocsVision.WebClient.Controllers";
+import { NumberControl } from "@docsvision/webclient/Platform/Number";
 
 
 export class ApplicationBusinessTripLogic {
@@ -70,13 +72,97 @@ export class ApplicationBusinessTripLogic {
         `);
     }
 
-    public async FillExecutiveAndPhone(layout: Layout) {
-        const tripSvc = layout.getService($BusinessTripAppService);
-        const model = await tripSvc.GetBusinessTripAppTraveller({documentId: layout.cardInfo.id});
-        await MessageBox.ShowInfo(`
-traveller id: ${model.id}
-executive id: ${model.executiveId}
-phone: ${model.phone}
-        `);
+    public async fillExecutiveAndPhone(layout: ILayout, args: IDataChangedEventArgs) {
+
+        const travellerModel = await layout.getService($BusinessTripAppService)
+            .GetBusinessTripAppTraveller({ travellerId: args.newValue.id });
+
+        if (!travellerModel) {
+            console.log("Couldn't extract traveller model");
+            console.log(`args: ${args}`);
+            return;
+        }
+
+        const executiveControl = layout.controls.tryGet<StaffDirectoryItems>("executive");
+        const phoneControl = layout.controls.tryGet<TextBox>("phone");
+
+        executiveControl.params.value = await layout.getService($EmployeeController).getEmployee(travellerModel.executiveId);
+        phoneControl.params.value = travellerModel.phone;
     }
+
+    public async fillAllowance(layout: ILayout, args: IDataChangedEventArgs) {
+        const daysInTripControl = layout.controls.tryGet<NumberControl>("daysInTripCount");
+        if (!daysInTripControl) {
+            await MessageBox.ShowError("Элемент управления daysInTripControl отсутствует в разметке!");
+            return;
+        }
+
+        const TotalAllowanceModel = await layout.getService($BusinessTripAppService)
+            .GetBusinessTripAppTotalAllowance({
+                city: args.newValue.name,
+                daysInTrip: daysInTripControl.params.value ?? 0
+            });
+
+        const allowanceControl = await layout.controls.tryGet<NumberControl>("allowance");
+        allowanceControl.params.value = TotalAllowanceModel.totalAllowance;
+    }
+
+    public async fillAllowanceOnDaysChanged(layout: ILayout, args: IDataChangedEventArgs) {
+        const cityControl = layout.controls.tryGet<DirectoryDesignerRow>("city");
+        const cityName = cityControl?.params?.value?.name;
+        if (!cityName) {
+            // city is not set yet, so allowance can't be calculated
+            return;
+        }
+
+        const TotalAllowanceModel = await layout.getService($BusinessTripAppService)
+            .GetBusinessTripAppTotalAllowance({
+                city: cityName,
+                daysInTrip: args.newValue ?? 0
+            });
+
+        const allowanceControl = await layout.controls.tryGet<NumberControl>("allowance");
+        allowanceControl.params.value = TotalAllowanceModel.totalAllowance;
+    }
+
+    public async updateDaysInTripOnDatesChanged(layout: ILayout) {
+        const tripDateStartControl = layout.controls.tryGet<DateTimePicker>("tripDateStart");
+        const tripDateEndControl = layout.controls.tryGet<DateTimePicker>("tripDateEnd");
+
+        const startDate = new Date(tripDateStartControl.params.value);
+        const endDate = new Date(tripDateEndControl.params.value);
+
+        const daysInTripCountControl = layout.controls.tryGet<NumberControl>("daysInTripCount");
+        daysInTripCountControl.params.value = this.getDifferenceInDays(startDate, endDate);
+    }
+
+    public async updateTripEndDateOnDaysChanged(layout: ILayout, args: IDataChangedEventArgs) {
+        const tripDateStartControl = layout.controls.tryGet<DateTimePicker>("tripDateStart");
+        if (!tripDateStartControl?.params?.value) {
+            MessageBox.ShowWarning("Сначала установите дату начала командировки");
+            return;
+        }
+
+        const tripDateEndControl = layout.controls.tryGet<DateTimePicker>("tripDateEnd");
+        const tripStart: Date = new Date(tripDateStartControl.params.value);
+
+        tripDateEndControl.params.value = new Date(tripStart.setDate(tripStart.getDate() + args.newValue));
+    }
+
+    public getDifferenceInDays(date1: Date, date2: Date): number {
+        const msInDay = 1000 * 60 * 60 * 24;
+        const diffInMs = Math.abs(date2.getTime() - date1.getTime());
+        return Math.floor(diffInMs / msInDay);
+    }
+
+    public dateToDays(date: Date): number {
+        const msInDay = 1000 * 60 * 60 * 24;
+        return Math.floor(date.getTime() / msInDay);
+    }
+
+    public daysToDate(days: number): Date {
+        const msInDay = 1000 * 60 * 60 * 24;
+        return new Date(days * msInDay);
+    }
+
 }

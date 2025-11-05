@@ -3,5 +3,5 @@ using System;
 namespace MyDVExtension.Server.Model;
 
 public class BusinessTripAppTravellerRequestModel {
-	public Guid documentId { get; set; }
+	public Guid travellerId { get; set; }
 }

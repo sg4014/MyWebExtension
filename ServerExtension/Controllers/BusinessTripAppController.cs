@@ -4,6 +4,7 @@ using DocsVision.Platform.WebClient.Models.Generic;
 using Microsoft.AspNetCore.Mvc;
 using MyDVExtension.Server.Model;
 using MyDVExtension.Server.Services;
+using System;
 
 namespace MyDVExtension.Server.Controllers;
 
@@ -24,8 +25,24 @@ public class BusinessTripAppController : ControllerBase {
 		
 		var sessionContext = _contextProvider.GetOrCreateCurrentSessionContext();
 		var result = _businessTripAppService.GetBusinessTripAppTravellerModel(
-			sessionContext, model.documentId);
+			sessionContext, model.travellerId);
 		
 		return CommonResponse.CreateSuccess(result);
 	}
+
+	[HttpPost]
+	public CommonResponse<BusinessTripAppTotalAllowanceModel> GetBusinessTripAppTotalAllowance(
+		[FromBody] BusinessTripAppTotalAllowanceRequestModel model)
+	{
+		if (model.DaysInTrip is null)
+		{
+			ArgumentNullException.ThrowIfNull(nameof(model.DaysInTrip));
+		}
+
+        var sessionContext = _contextProvider.GetOrCreateCurrentSessionContext();
+        var result = _businessTripAppService.GetBusinessTripAppTotalAllowanceModel(
+            sessionContext, model.City, (int)model.DaysInTrip);
+
+		return CommonResponse.CreateSuccess(result);
+    }
 }

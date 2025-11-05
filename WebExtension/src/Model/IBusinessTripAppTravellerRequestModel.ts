@@ -1,3 +1,3 @@
 export interface IBusinessTripAppTravellerRequestModel {
-    documentId: string
+    travellerId: string
 }
