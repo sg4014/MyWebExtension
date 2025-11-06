@@ -2,7 +2,9 @@ using DocsVision.BackOffice.CardLib.CardDefs;
 using DocsVision.WebClient.Extensibility;
 using DocsVision.WebClientLibrary.ObjectModel.Services.EntityLifeCycle;
 using Microsoft.Extensions.DependencyInjection;
+using MyDVExtension.Server.CardLifeCycle;
 using MyDVExtension.Server.Services;
+using MyDVExtension.Server.Services.Interfaces;
 using System;
 
 

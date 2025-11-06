@@ -42,6 +42,16 @@ var BusinessTripAppService = /** @class */ (function (_super) {
             options: { isShowOverlay: true }
         });
     };
+    BusinessTripAppService.prototype.GetBusinessTripAppCreatedCardsCount = function (cardId) {
+        return _super.prototype.doRequest.call(this, {
+            controller: this.controllerName,
+            action: 'GetBusinessTripAppCreatedCardsCount',
+            isApi: true,
+            method: HttpMethods.Get,
+            data: { cardId: cardId },
+            options: { isShowOverlay: true }
+        });
+    };
     return BusinessTripAppService;
 }(ControllerBase));
 export { BusinessTripAppService };

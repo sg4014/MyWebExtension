@@ -8,6 +8,8 @@ import { CustomButton } from "@docsvision/webclient/Platform/CustomButton";
 import {StaffDirectoryItems} from "@docsvision/webclient/BackOffice/StaffDirectoryItems";
 import { DirectoryDesignerRow } from "@docsvision/webclient/BackOffice/DirectoryDesignerRow";
 import { NumberControl } from "@docsvision/webclient/Platform/Number";
+import { $MessageBox } from "@docsvision/webclient/System/$MessageBox";
+import { IEventArgs } from "@docsvision/webclient/System/IEventArgs";
 
 export async function ddApplicationBusinessTrip_beforeCardSaving(
     layout: ILayout,
@@ -64,4 +66,10 @@ export async function ddApplicationBusinessTrip_daysInTripCount_onDataChanged(
     const logic = new ApplicationBusinessTripLogic();
     await logic.fillAllowanceOnDaysChanged(sender.layout, args);
     await logic.updateTripEndDateOnDaysChanged(sender.layout, args);
+}
+
+export async function getAppCount_onClick(sender: CustomButton, args: IEventArgs) {
+    const services = sender.layout.getService<$MessageBox>();
+    const count = await new ApplicationBusinessTripLogic().getAppCount(sender.layout);
+    services.messageBox.showInfo(`Found ${count} applications`);
 }

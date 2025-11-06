@@ -3,25 +3,28 @@ using DocsVision.Platform.WebClient.Models;
 using DocsVision.Platform.WebClient.Models.Generic;
 using Microsoft.AspNetCore.Mvc;
 using MyDVExtension.Server.Model;
-using MyDVExtension.Server.Services;
+using MyDVExtension.Server.Services.Interfaces;
 using System;
 
 namespace MyDVExtension.Server.Controllers;
 
-public class BusinessTripAppController : ControllerBase {
+public class BusinessTripAppController : ControllerBase
+{
 	private readonly ICurrentObjectContextProvider _contextProvider;
 	private readonly IBusinessTripAppService _businessTripAppService;
 	
 	public BusinessTripAppController(
 		ICurrentObjectContextProvider contextProvider,
-		IBusinessTripAppService businessTripAppService) {
+		IBusinessTripAppService businessTripAppService)
+	{
 		_contextProvider = contextProvider;
 		_businessTripAppService = businessTripAppService;
 	}
 	
 	[HttpPost]
 	public CommonResponse<BusinessTripAppTravellerModel> GetBusinessTripAppTraveller(
-		[FromBody] BusinessTripAppTravellerRequestModel model) {
+		[FromBody] BusinessTripAppTravellerRequestModel model)
+	{
 		
 		var sessionContext = _contextProvider.GetOrCreateCurrentSessionContext();
 		var result = _businessTripAppService.GetBusinessTripAppTravellerModel(
@@ -44,5 +47,14 @@ public class BusinessTripAppController : ControllerBase {
             sessionContext, model.City, (int)model.DaysInTrip);
 
 		return CommonResponse.CreateSuccess(result);
+    }
+
+	[HttpGet]
+    public CommonResponse GetBusinessTripAppCreatedCardsCount(Guid cardId)
+	{
+		var sessionContext = _contextProvider.GetOrCreateCurrentSessionContext();
+		return CommonResponse.CreateSuccess(
+			_businessTripAppService.GetUserCreatedApplicationCardsCount(sessionContext, cardId)
+		);
     }
 }

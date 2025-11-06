@@ -1,6 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36623.8
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyDVExtension.Server", "ServerExtension\MyDVExtension.Server.csproj", "{278DA8DE-057F-41D2-9476-12DA0D5F3BF4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntroductionToSDK.App", "..\sg4014\EngineerSchoolHomework6_backend\IntroductionToSDK.App.csproj", "{DBC9942F-9D2A-6180-6C4D-D60AB92C8190}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyStorageSE", "MyStorageSE\MyStorageSE.csproj", "{4934AB68-5F6B-4209-86C2-F01774950277}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -12,5 +19,19 @@ Global
 		{278DA8DE-057F-41D2-9476-12DA0D5F3BF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{278DA8DE-057F-41D2-9476-12DA0D5F3BF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{278DA8DE-057F-41D2-9476-12DA0D5F3BF4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DBC9942F-9D2A-6180-6C4D-D60AB92C8190}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBC9942F-9D2A-6180-6C4D-D60AB92C8190}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBC9942F-9D2A-6180-6C4D-D60AB92C8190}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBC9942F-9D2A-6180-6C4D-D60AB92C8190}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4934AB68-5F6B-4209-86C2-F01774950277}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4934AB68-5F6B-4209-86C2-F01774950277}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4934AB68-5F6B-4209-86C2-F01774950277}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4934AB68-5F6B-4209-86C2-F01774950277}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0CBC4042-682F-4D90-B223-FA1E0117963B}
 	EndGlobalSection
 EndGlobal

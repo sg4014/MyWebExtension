@@ -12,6 +12,7 @@ import {$BusinessTripAppService} from "../Services/Interfaces/IBusinessTripAppSe
 import {$MessageBox} from "@docsvision/webclient/System/$MessageBox";
 import { $EmployeeController } from "@docsvision/webclient/Generated/DocsVision.WebClient.Controllers";
 import { NumberControl } from "@docsvision/webclient/Platform/Number";
+import { $CardId } from "@docsvision/webclient/System/LayoutServices";
 
 
 export class ApplicationBusinessTripLogic {
@@ -147,6 +148,11 @@ export class ApplicationBusinessTripLogic {
         const tripStart: Date = new Date(tripDateStartControl.params.value);
 
         tripDateEndControl.params.value = new Date(tripStart.setDate(tripStart.getDate() + args.newValue));
+    }
+
+    public async getAppCount(layout: ILayout): Promise<number> {
+        const services = layout.getService<$BusinessTripAppService & $CardId>();
+        return await services.businessTripAppService.GetBusinessTripAppCreatedCardsCount(services.cardId);
     }
 
     public getDifferenceInDays(date1: Date, date2: Date): number {

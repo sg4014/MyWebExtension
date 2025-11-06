@@ -2,9 +2,12 @@
 using DocsVision.WebClientLibrary.ObjectModel.Services.EntityLifeCycle;
 using DocsVision.WebClientLibrary.ObjectModel.Services.EntityLifeCycle.Options;
 using MyDVExtension.Server.Services;
+using MyDVExtension.Server.Services.Interfaces;
 using SkiaSharp;
 using System;
 using System.Collections.Generic;
+
+namespace MyDVExtension.Server.CardLifeCycle;
 
 public class BusinessTripAppLifeCycle : ICardLifeCycleEx
 {

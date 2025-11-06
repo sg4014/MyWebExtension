@@ -1,9 +1,10 @@
 using DocsVision.BackOffice.CardLib.CardDefs;
 using DocsVision.BackOffice.ObjectModel;
 using DocsVision.BackOffice.ObjectModel.Services;
+using DocsVision.Platform.ObjectManager;
 using DocsVision.Platform.WebClient;
-using DocumentFormat.OpenXml.ExtendedProperties;
 using MyDVExtension.Server.Model;
+using MyDVExtension.Server.Services.Interfaces;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -76,6 +77,15 @@ public class BusinessTripAppService : IBusinessTripAppService {
         sessionContext.ObjectContext.AcceptChanges();
     }
 
+    public int GetUserCreatedApplicationCardsCount(SessionContext sessionContext, Guid cardId)
+    {
+        ExtensionManager extensionManager = sessionContext.Session.ExtensionManager;
+        ExtensionMethod getAppCount = extensionManager.GetExtensionMethod("MY_SE", "GetApplicationCount");
+        getAppCount.Parameters.AddNew("employeeId", ParameterValueType.Guid, sessionContext.UserInfo.EmployeeId);
+        return int.Parse(getAppCount.Execute() + "");
+    }
+
+
     private StaffUnit GetRootUnit(StaffUnit unit)
     {
         while (unit.ParentUnit != null)
@@ -104,4 +114,5 @@ public class BusinessTripAppService : IBusinessTripAppService {
 
         return row;
     }
+
 }

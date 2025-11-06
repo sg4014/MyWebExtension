@@ -2,12 +2,12 @@
 
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
-		<RootNamespace>ServerExtension</RootNamespace>
-		<AssemblyName>ServerExtension</AssemblyName>
+		<RootNamespace>MyDVExtension.Server</RootNamespace>
+		<AssemblyName>MyDVExtension.Server</AssemblyName>
 	</PropertyGroup>
 
 	<PropertyGroup>
-		<AssemblyOriginatorKeyFile>sgKey.snk</AssemblyOriginatorKeyFile>
+		<AssemblyOriginatorKeyFile>..\sgKey.snk</AssemblyOriginatorKeyFile>
 		<SignAssembly>true</SignAssembly>
 		<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
 	</PropertyGroup>

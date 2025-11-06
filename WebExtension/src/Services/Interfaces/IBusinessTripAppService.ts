@@ -10,6 +10,8 @@ export interface IBusinessTripAppService {
 
     GetBusinessTripAppTotalAllowance(model: IBusinessTripAppTotalAllowanceRequestModel)
         : Promise<IBusinessTripAppTotalAllowanceModel>
+
+    GetBusinessTripAppCreatedCardsCount(cardId: string) : Promise<number>
 }
 
 export type $BusinessTripAppService = { businessTripAppService: IBusinessTripAppService};

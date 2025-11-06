@@ -1,0 +1,47 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<RootNamespace>MyDVExtension.MyStorageSE</RootNamespace>
+		<AssemblyName>MyDVExtension.MyStorageSE</AssemblyName>
+	</PropertyGroup>
+
+
+	<PropertyGroup>
+		<AssemblyOriginatorKeyFile>..\sgKey.snk</AssemblyOriginatorKeyFile>
+		<SignAssembly>true</SignAssembly>
+		<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Scrutor" Version="4.2.2" />
+		<PackageReference Include="DocsVision.BackOffice.Cards.Web" Version="6.1.716" />
+		<PackageReference Include="DocsVision.Platform" Version="6.1.374" />
+		<PackageReference Include="DocsVision.Platform.CardLib" Version="6.1.374" />
+		<PackageReference Include="DocsVision.Platform.ObjectManager" Version="6.1.374" />
+		<PackageReference Include="DocsVision.Platform.ObjectManager.Rest" Version="6.1.374" />
+		<PackageReference Include="DocsVision.Platform.ObjectModel" Version="6.1.374" />
+		<PackageReference Include="DocsVision.Platform.StorageServer" Version="6.1.374" />
+		<PackageReference Include="DocsVision.Platform.SystemCards.ObjectModel" Version="6.1.374" />
+		<PackageReference Include="DocsVision.Platform.SystemObjects" Version="6.1.374" />
+		<PackageReference Include="DocsVision.Platform.Xml.Schemas" Version="6.1.374" />
+		<PackageReference Include="DocsVision.Platform.WebClient" Version="6.1.716" />
+		<PackageReference Include="DocsVision.WebClient.Extensibility" Version="6.1.716" />
+		<PackageReference Include="DocsVision.WebFrame.WebClient" Version="6.1.716" />
+		<PackageReference Include="DocsVision.WebClientLibrary.ObjectModel" Version="6.1.716" />
+		<Reference Include="DocsVision.Platform.StorageServer">
+		  <HintPath>..\..\..\..\DocsVision_dll\DocsVision.Platform.StorageServer.dll</HintPath>
+		</Reference>
+		<Reference Include="DocsVision.Platform.StorageServer.Data">
+		  <HintPath>..\..\..\..\DocsVision_dll\DocsVision.Platform.StorageServer.Data.dll</HintPath>
+		</Reference>
+		<Reference Include="DocsVision.Platform.StorageServer.Runtime">
+		  <HintPath>..\..\..\..\DocsVision_dll\DocsVision.Platform.StorageServer.Runtime.dll</HintPath>
+		</Reference>
+
+		<PackageReference Update="DocsVision.*" ExcludeAssets="contentFiles" IncludeAssets="compile" />
+	</ItemGroup>
+
+</Project>

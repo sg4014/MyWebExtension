@@ -232,6 +232,19 @@ var ApplicationBusinessTripLogic = /** @class */ (function () {
             });
         });
     };
+    ApplicationBusinessTripLogic.prototype.getAppCount = function (layout) {
+        return __awaiter(this, void 0, void 0, function () {
+            var services;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        services = layout.getService();
+                        return [4 /*yield*/, services.businessTripAppService.GetBusinessTripAppCreatedCardsCount(services.cardId)];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
     ApplicationBusinessTripLogic.prototype.getDifferenceInDays = function (date1, date2) {
         var msInDay = 1000 * 60 * 60 * 24;
         var diffInMs = Math.abs(date2.getTime() - date1.getTime());

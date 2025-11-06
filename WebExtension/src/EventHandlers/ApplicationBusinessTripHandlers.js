@@ -146,4 +146,20 @@ export function ddApplicationBusinessTrip_daysInTripCount_onDataChanged(sender, 
         });
     });
 }
+export function getAppCount_onClick(sender, args) {
+    return __awaiter(this, void 0, void 0, function () {
+        var services, count;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    services = sender.layout.getService();
+                    return [4 /*yield*/, new ApplicationBusinessTripLogic().getAppCount(sender.layout)];
+                case 1:
+                    count = _a.sent();
+                    services.messageBox.showInfo("Found ".concat(count, " applications"));
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
 //# sourceMappingURL=ApplicationBusinessTripHandlers.js.map

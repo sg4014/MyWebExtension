@@ -40,4 +40,17 @@ export class BusinessTripAppService extends ControllerBase implements IBusinessT
             options: { isShowOverlay: true }
         });
     }
+
+    GetBusinessTripAppCreatedCardsCount(cardId: string)
+        : Promise<number> {
+
+        return super.doRequest({
+            controller: this.controllerName,
+            action: 'GetBusinessTripAppCreatedCardsCount',
+            isApi: true,
+            method: HttpMethods.Get,
+            data: { cardId },
+            options: { isShowOverlay: true }
+        });
+    }
 }
