@@ -1,8 +1,11 @@
+using Autofac;
 using DocsVision.BackOffice.CardLib.CardDefs;
+using DocsVision.Layout.WebClient.Services;
 using DocsVision.WebClient.Extensibility;
 using DocsVision.WebClientLibrary.ObjectModel.Services.EntityLifeCycle;
 using Microsoft.Extensions.DependencyInjection;
 using MyDVExtension.Server.CardLifeCycle;
+using MyDVExtension.Server.DataGridPlugins;
 using MyDVExtension.Server.Services;
 using MyDVExtension.Server.Services.Interfaces;
 using System;
@@ -20,6 +23,7 @@ public class ServerExtension {
 
 		public override void InitializeServiceCollection(IServiceCollection services) {
 			services.AddSingleton<IBusinessTripAppService, BusinessTripAppService>();
+            services.AddSingleton<IDataGridControlPlugin, EmployeeTripHistoryPlugin>();
 
             services.Decorate<ICardLifeCycleEx>((original, serviceProvider) => {
                 var typeId = original.CardTypeId;

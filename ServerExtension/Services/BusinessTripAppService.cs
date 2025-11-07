@@ -2,7 +2,9 @@ using DocsVision.BackOffice.CardLib.CardDefs;
 using DocsVision.BackOffice.ObjectModel;
 using DocsVision.BackOffice.ObjectModel.Services;
 using DocsVision.Platform.ObjectManager;
+using DocsVision.Platform.StorageServer;
 using DocsVision.Platform.WebClient;
+using Microsoft.Extensions.DependencyInjection;
 using MyDVExtension.Server.Model;
 using MyDVExtension.Server.Services.Interfaces;
 using System;
@@ -85,6 +87,13 @@ public class BusinessTripAppService : IBusinessTripAppService {
         return int.Parse(getAppCount.Execute() + "");
     }
 
+    public InfoRowCollection GetEmployeeTripHistory(SessionContext sessionContext, Guid travellerId)
+    {
+        ExtensionManager extensionManager = sessionContext.Session.ExtensionManager;
+        ExtensionMethod getTripHistory = extensionManager.GetExtensionMethod("MY_SE", "GetTripHistory");
+        getTripHistory.Parameters.AddNew("employeeId", ParameterValueType.Guid, travellerId);
+        return getTripHistory.ExecuteReader();
+    }
 
     private StaffUnit GetRootUnit(StaffUnit unit)
     {
