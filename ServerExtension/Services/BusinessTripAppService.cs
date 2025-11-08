@@ -66,11 +66,11 @@ public class BusinessTripAppService : IBusinessTripAppService {
         if (traveller.Unit?.Manager == traveller)
         {
             // traveller is the department manager, so approver must be the CEO
-            newApproversRow[CardDocument.Approvers.Approver] = GetRootUnit(traveller.Unit)?.Manager.GetObjectId();
+            newApproversRow[CardDocument.Approvers.Approver] = GetRootUnit(traveller.Unit)?.Manager?.GetObjectId();
         } else
         {
             // traveller is a regular employee, so approver must be the department manager
-            newApproversRow[CardDocument.Approvers.Approver] = traveller.Unit?.Manager.GetObjectId();
+            newApproversRow[CardDocument.Approvers.Approver] = traveller.Unit?.Manager?.GetObjectId();
         }
         
         approversRows.Add(newApproversRow);
