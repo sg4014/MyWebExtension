@@ -23,7 +23,7 @@ namespace UploadDataToDbScript
             _connection.Open();
         }
 
-        public async Task AddObserversBatchAsync(List<CityObserversRowModel> cityObserversRows)
+        public void AddObserversBatch(List<CityObserversRowModel> cityObserversRows)
         {
             if (cityObserversRows == null || cityObserversRows.Count == 0)
                 return;
@@ -33,16 +33,16 @@ namespace UploadDataToDbScript
             FROM STDIN (FORMAT BINARY);
             """;
 
-            using var writer = await _connection.BeginBinaryImportAsync(copyCommand);
+            using var writer = _connection.BeginBinaryImport(copyCommand);
 
             foreach (var row in cityObserversRows)
             {
-                await writer.StartRowAsync();
-                await writer.WriteAsync(row.EmployeeID, NpgsqlTypes.NpgsqlDbType.Uuid);
-                await writer.WriteAsync(row.CityID, NpgsqlTypes.NpgsqlDbType.Uuid);
+                writer.StartRow();
+                writer.Write(row.EmployeeID, NpgsqlTypes.NpgsqlDbType.Uuid);
+                writer.Write(row.CityID, NpgsqlTypes.NpgsqlDbType.Uuid);
             }
 
-            await writer.CompleteAsync();
+            writer.Complete();
         }
 
         public void AddEmployeesBatch(List<EmployeeModel> employees)

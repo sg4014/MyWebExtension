@@ -89,7 +89,7 @@ try
     Console.WriteLine("Finished inserting employees.");
 
     Console.WriteLine("Starting to insert city observers...");
-    await dataAccess.AddObserversBatchAsync(cityObserversRows);
+    dataAccess.AddObserversBatch(cityObserversRows);
     Console.WriteLine("Finished inserting city observers.");
 
     dataAccess.UpdateStaffDirectoryChangeDateTime();
