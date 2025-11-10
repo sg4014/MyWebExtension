@@ -134,10 +134,10 @@ public class EmployeeTripHistoryPlugin : IDataGridControlPlugin
                 }
             });
 
-            tableModel.Id = Guid.NewGuid().ToString();
-
             ++number;
         }
+
+        tableModel.Id = Guid.NewGuid().ToString();
 
         return tableModel;
     }
