@@ -23,22 +23,6 @@ namespace UploadDataToDbScript
             _connection.Open();
         }
 
-        public void AddObserver(Guid employeeId, Guid cityId)
-        {
-            const string sql = """
-                
-                INSERT INTO "dvtable_city_observers" ("EmployeeID", "cityID")
-                VALUES (@employeeId, @cityId)
-                ON CONFLICT DO NOTHING;
-                
-                """;
-
-            using var cmd = new NpgsqlCommand(sql, _connection);
-            cmd.Parameters.AddWithValue("employeeId", employeeId);
-            cmd.Parameters.AddWithValue("cityId", cityId);
-            cmd.ExecuteNonQueryAsync();
-        }
-
         public async Task AddObserversBatchAsync(List<CityObserversRowModel> cityObserversRows)
         {
             if (cityObserversRows == null || cityObserversRows.Count == 0)
